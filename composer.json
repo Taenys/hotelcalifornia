@@ -1,0 +1,19 @@
+{
+    "name": "jonathan/adapter",
+    "authors": [
+        {
+            "name": "Grafikart",
+            "email": "contact@grafikart.fr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Hotel\\Controller\\": "controllers",
+            "Hotel\\Model\\": "models"
+        }
+    },
+    "require": {
+        "doctrine/cache": "^1.6",
+        "mongodb/mongodb": "^1.1"
+    }
+}

@@ -1,0 +1,31 @@
+<h1>Welcomme to Hotel California Bitch!</h1>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Chambre</th>
+        <?php for($day =1; $day<=31; $day++): ?>
+            <th><?= $day ?></th>
+        <?php endfor; ?>
+    </tr>
+    </thead>
+    <tbody>
+        <?php foreach($app['view-data'] as $booking): ?>
+            <?php $checkinDate = date_parse($booking['checkinDate']); ?>
+	        <?php $checkoutDate = date_parse($booking['checkoutDate']); ?>
+            <tr>
+                <td><?= $booking['roomId'] ?></td>
+	            <?php for($day =1; $day<=31; $day++): ?>
+
+                    <?php if($day >= $checkinDate['day'] && $day<= $checkoutDate['day']): ?>
+                        <td>X</td>
+                    <?php else: ?>
+                        <td></td>
+                    <?php endif; ?>
+
+	             <?php endfor; ?>
+            </tr>
+        <?php endforeach; ?>
+
+    </tbody>
+</table>
