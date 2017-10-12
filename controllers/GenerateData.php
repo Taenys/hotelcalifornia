@@ -23,7 +23,7 @@ class GenerateData
         $customer->insertMany(json_decode(file_get_contents(DIR_DATA.'/Customer.json')));
 
         // Création d'un tableau listant tous les identifiants MongoDB des clients.
-        $customerList = $customer->find(/* TODO: écrire le code ici ! */)->toArray();
+        $customerList = $customer->find([],['projection'=> ['_id'=> 1]])->toArray();
         
 
         /*
@@ -37,16 +37,13 @@ class GenerateData
         $room->insertMany(json_decode(file_get_contents(DIR_DATA.'/Room.json')));
 
         // Recherche de toutes les chambres qui possèdent au moins une réservation.
-        foreach($room->find(/* TODO: écrire le code ici ! */) as $oneRoom)
+        foreach($room->find(['bookings'=> ['$ne' => [] ] ]) as $oneRoom)
         {
             // Mise à jour de la réservation de la chambre, ajout du numéro de client.
             $room->updateOne
             (
-                /* TODO: écrire le code ici ! 
-
-                   - La méthode a besoin de 2 arguments
-                   - $customerList[array_rand($customerList) ] permet de récupérer aléatoirement un client parmi la liste
-                 */
+            	['_id'=> $oneRoom['_id'] ],
+	            ['$set'=> ['bookings.0.customerId' =>$customerList[array_rand($customerList)] ] ]
             );
         }
  
