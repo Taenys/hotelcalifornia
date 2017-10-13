@@ -43,7 +43,7 @@ class Room
 		return $rooms;
 	}
 
-	public function find(Calendar $calendarModel, $hasAirConditioner = null)
+	public function find(Calendar $calendarModel, $hasAirConditioner = null, $hasTelevision = null)
 	{
 		// au debut pas de filtre de recherche
 		$filter = [];
@@ -52,6 +52,11 @@ class Room
 		if($hasAirConditioner == true)
 		{
 			$filter['hasAirConditioner'] = true;
+		}
+
+		if($hasTelevision == true)
+		{
+			$filter['hasTelevision'] = true;
 		}
 
 		//connection mongodb

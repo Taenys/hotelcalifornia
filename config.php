@@ -29,7 +29,9 @@ $config =
      */
     'mvc.routes' =>
     [
-        'default' => [ 'controller' => 'Home',         'view' => 'home.phtml' ],
-        'test'    => [ 'controller' => 'GenerateData', 'view' => null         ]
+        'default' => [ 'controller' => 'Home',              'view' => 'home.phtml' ],
+        'test'    => [ 'controller' => 'GenerateData',      'view' => null         ],
+	    'book'    => [ 'controller' => 'Book',              'view' => null         ],
+	    'booking' => [ 'controller' => 'BookingValidation', 'view' => 'booking_validation.phtml']
     ]
 ];
