@@ -53,4 +53,33 @@ class Booking {
 
 
 	}
+
+	public function validate($roomId, $customerId/*, $checkinDate, $checkoutDate, $adultCount, $childreCount*/)
+	{
+		$mongoDB = new Mongo(); // connexion mongo
+		$redisDB = new Redis(); //connexion redis
+
+		$redisDB->del('booking');
+
+		$roomCollection = $mongoDB->Hotel->Room;
+
+		$roomCollection->updateOne
+		(
+			['_id'=> new ObjectID($roomId) ],
+			['$push'=>
+				 [
+					'bookings' =>
+					[
+						'checkinDate' => '2017-10-10',
+						'checkoutDate' => '2017-10-20',
+						'adults'       => 3,
+						'children'    => 1,
+						'customerId'   => new ObjectID($customerId)
+					]
+				 ]
+			]
+		);
+
+	}
+
 }

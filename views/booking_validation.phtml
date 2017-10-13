@@ -5,3 +5,9 @@
 	<li>Date de début de réservation : <?= $bookingRequests['checkinDate'] ?></li>
 	<li>Fin de réservation : <?= $bookingRequests['checkoutDate'] ?></li>
 </ul>
+<form action="<?= route_to_url('booking') ?>" method="post">
+	<input type="hidden" name="isBooked" value="true">
+	<input type="hidden" name="roomId" value="<?= $bookingRequests['roomId'] ?>">
+	<input type="hidden" name="customerId" value="<?= $bookingRequests['customerId'] ?>">
+	<button type="submit">Enregistrer la réservation</button>
+</form>

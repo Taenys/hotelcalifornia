@@ -19,6 +19,11 @@ class BookingValidation {
 
 	public function httpPostRequest()
 	{
+		$bookingModel = new Booking();
 
+		if($_POST['isBooked'] == true)
+		{
+			$bookingModel->validate($_POST['roomId'],$_POST['customerId']);
+		}
 	}
 }
